@@ -58,3 +58,6 @@ Modify to suite your API needs.
 - Point to MongoDB running on remote server by mpdifying the Localhost param found in MongoDB config class.
 - Change the model class to suite your own model. Here we are assuming the "contact" model with example JSON agiven above.
 ```
+
+Update 01/13/16
+Added a post-commit hook under .git/hooks/post-commit
