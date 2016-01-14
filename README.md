@@ -60,4 +60,7 @@ Modify to suite your API needs.
 ```
 
 Update 01/13/16
-Added a post-commit hook under .git/hooks/post-commit
+Added a post-commit hook under .git/hooks/post-commit to build via jenkins
+
+Update 01/14/16
+Added a post-jenkins-build hook to deploy apps to Tomcat
