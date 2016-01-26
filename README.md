@@ -64,3 +64,7 @@ Added a post-commit hook under .git/hooks/post-commit to build via jenkins
 
 Update 01/14/16
 Added a post-jenkins-build hook to deploy apps to Tomcat
+
+Update 01/26/16
+- The post-jenkins-build script will be replaced with an Ansible playbook once we have that figured out
+- I'm not certain Whether it's advisable (if even possible) to show post-commits in action by commiting an update to the .git/hooks/post-commit file because it's in the .git directory and out of the staging area?
