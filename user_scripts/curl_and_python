@@ -1,0 +1,64 @@
+GET	curl -i http://localhost:8080/ETAPP-REST-1/contacts/
+curl -i http://localhost:8080/ETAPP-REST-1/contacts/<contactid>
+
+POST	curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/ETAPP-REST-1/contacts/ -d '{"firstName":"Priya","lastName":"Sampath","email":"priyas@emc.com","city":"Shrewsbury"}'
+PUT	curl -i -H "Content-Type:application/json" -X PUT http://localhost:8080/ETAPP-REST-1/contacts/56ab802d7d28ec866c3965d7/phone/1111111111
+DELETE	curl -i -H "Content-Type:application/json" -X DELETE http://localhost:8080/ETAPP-REST-1/contacts/56ab89e67d28ec866c3965d8
+
+GET	#get_contacts.py
+------------------------
+import requests
+r = requests.get("http://localhost:8080/ETAPP-REST-1/contacts/")
+print r.json()
+
+python get_contacts.py
+
+POST	#post_contact.py
+------------------------
+import requests
+import sys
+import json
+
+contact = sys.argv[1]
+newcontact = json.loads(contact)
+r = requests.post("http://localhost:8080/ETAPP-REST-1/contacts/", json=newcontact)
+
+if r.status_code != 201:
+     raise ValueError('error msg {}'.format(r.status_code))
+print 'Contact inserted'
+
+python post_contact.py '{"firstName":"Adarsn","lastName":"Gopinathan","email":"adarsh.g@gmail.com","city":"Shrewsbury"}'
+
+PUT	#put_contact.py
+------------------------
+import requests
+import sys
+
+contactid = sys.argv[1]
+field =  sys.argv[2]
+data = sys.argv[3]
+
+url = "http://localhost:8080/ETAPP-REST-1/contacts/{0}/{1}/{2}".format(contactid,field,data)
+r = requests.put(url)
+
+if r.status_code != 200:
+     raise ValueError('error msg {0}'.format(r.status_code))
+print 'Contact updated'
+
+python put_contact.py 56ab802d7d28ec866c3965d phone 0000000000
+
+DELETE	#delete_contact.py
+------------------------
+
+import requests
+import sys
+
+contactid = sys.argv[1]
+r = requests.delete("http://localhost:8080/ETAPP-REST-1/contacts/{0}".format(contactid))
+
+if r.status_code != 200:
+     raise ValueError('error msg {}'.format(r.status_code))
+print 'Contact deleted'
+
+python delete_contact.py 56ab64be7d28ec866c3965cf
+

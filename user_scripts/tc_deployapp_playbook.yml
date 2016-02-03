@@ -1,0 +1,35 @@
+---
+- hosts: webservers
+  vars:
+    # If multiple instances will be installed, define different names for each instance directory
+    tomcat_ver: 8.0.30
+    tomcat_name: "apache-tomcat-{{tomcat_ver}}"
+    install_base: "/usr/share"
+    instance_name: "tomcat_BASE"
+    install_path: "{{install_base}}/{{instance_name}}/{{tomcat_name}}"
+    #app_path: /root/Development/git/MongoDB-Spring-REST-Service--Initial/target
+    app_path: /Development/git/MongoDB-Spring-REST-Service--Initial/target
+    app_name: ETAPP-REST-1.war
+
+  tasks:
+  - stat: path="{{app_path}}/{{app_name}}"
+    register: srcpath
+
+  - stat: path="{{install_path}}/webapps"
+    register: tompath
+
+  - stat: path="{{install_path}}/webapps/{{app_name}}"
+    register: dstpath
+
+  - name: remove existing version of the app
+    file: path="{{install_path}}/webapps/{{app_name}}" state=absent
+    when: dstpath.stat.exists == true
+
+  - name: copy app into tomcat
+    command: cp "{{app_path}}/{{app_name}}" "{{install_path}}/webapps"
+    when: tompath.stat.isdir is defined and tompath.stat.isdir == true and srcpath.stat.exists == true
+    notify: restart tomcat
+
+  handlers:
+  - name: restart tomcat 
+    service: name={{instance_name}} state=restarted
