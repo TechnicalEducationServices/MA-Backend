@@ -1,0 +1,2 @@
+#PUT - curl script
+curl -i -H "Content-Type:application/json" -X PUT http://localhost:8080/ETAPP-REST-1/contacts/56ab802d7d28ec866c3965d7/phone/1111111111

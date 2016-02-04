@@ -1,0 +1,2 @@
+#CURL DELETE
+curl -i -H "Content-Type:application/json" -X DELETE http://localhost:8080/ETAPP-REST-1/contacts/56ab89e67d28ec866c3965d8

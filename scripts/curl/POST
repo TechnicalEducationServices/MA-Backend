@@ -1,0 +1,2 @@
+#POST	- curl script
+curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/ETAPP-REST-1/contacts/ -d '{"firstName":"Priya","lastName":"Sampath","email":"priyas@emc.com","city":"Shrewsbury"}'
