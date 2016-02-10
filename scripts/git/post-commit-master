@@ -8,6 +8,6 @@
 BRANCHNAME=$(git rev-parse --abbrev-ref HEAD)
 MASTERBRANCH="master"
 
-curl http://192.168.1.24:8080/jenkins/job/EMC_RESTAPP/build
+curl http://192.168.1.26:8080/jenkins/job/EMC_RESTAPP/build
 
 echo "\n\nHi, Build triggered successfully on branch: $BRANCHNAME\n\n" 
