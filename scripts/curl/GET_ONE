@@ -1,2 +1,2 @@
 #GET ONE RECORD - Curl Script	
-curl -i http://localhost:8080/ETAPP-REST-1/contacts/<contactid>
+curl -i http://192.168.1.23:8080/ETAPP-REST-1/contacts/<contactid>
